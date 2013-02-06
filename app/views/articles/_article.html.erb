@@ -1,0 +1,19 @@
+<%= link_to article_path(article), id: "article-#{article.id}" do %>
+<div class="index_article">
+
+  <h2 class="article_title">
+    <%= article.title %>
+  </h2>
+
+
+  <p class="article_content">
+    <%= image_tag picture_article_path(article), class: "thumbnail" %>
+    <% if article.body.length > 250 %>
+      <%= "#{article.body[0...247]}..." %>
+    <% else %>
+      <%= article.body %>
+    <% end %>
+  </p>
+
+</div>
+<% end %>

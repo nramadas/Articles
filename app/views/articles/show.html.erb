@@ -1,0 +1,15 @@
+<div style="float:left">
+  <h1 class="article_title">
+    <%= @article.title %>
+  </h1>
+</div>
+<div class="edit-button">
+  <%= button_to 'edit', edit_article_path(@article), method: :get %>
+</div>
+<p class="article_content" style="clear:both">
+  <div class="show-article-body">
+    <%= image_tag picture_article_path(@article), class: "article-picture" %>
+    <%= @article.body %>
+  </div>
+</p>
+<%= link_to 'Back to all articles', root_path %>
