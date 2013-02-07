@@ -1,0 +1,16 @@
+<h1 class="main_sub_title"><%= @user.name %></h1>
+<br>
+<h4 class="sub_title">Authored Articles
+  (<%= @user.authored_articles.length %>)</h2>
+<% @user.authored_articles.each do |article| %>
+  <%= render article, locals: { authored?: true } %>
+<% end %>
+
+<div style="clear:both" />
+<br>
+
+<h4 class="sub_title">Contributions
+  (<%= @user.contributed_articles.length %>)</h2>
+<% @user.contributed_articles.each do |article| %>
+  <%= render article, locals: { authored?: false } %>
+<% end %>

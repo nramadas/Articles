@@ -3,13 +3,35 @@
     <%= @article.title %>
   </h1>
 </div>
-<div class="edit-button">
+<% if current_user %>
+<div class="edit-button edit-button-down">
   <%= button_to 'edit', edit_article_path(@article), method: :get %>
 </div>
+<% end %>
+<% if current_user == @article.author %>
+<div class="edit-button edit-button-down">
+  <%= button_to 'delete', article_path(@article), method: :delete %>
+</div>
+<% end %>
 <p class="article_content" style="clear:both">
   <div class="show-article-body">
     <%= image_tag picture_article_path(@article), class: "article-picture" %>
     <%= @article.body %>
   </div>
+  <div class="show-article-sidebar">
+    <% if @article.author %>
+      <h3>Author</h3>
+      <%= @article.author.name %>
+    <% end %>
+    <% if @article.collaborators.any? %>
+      <h3>Contributors</h3>
+      <% @article.collaborators.each do |contributor| %>
+      <%= contributor.name %>
+      <br>
+      <% end %>
+    <% end %>
+  </div>
 </p>
+<div style="clear:both">
 <%= link_to 'Back to all articles', root_path %>
+</div>
